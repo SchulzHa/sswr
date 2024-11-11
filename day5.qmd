@@ -30,7 +30,6 @@ From [Spatial Data Science: with applications in R](https://r-spatial.org/book/)
 -   Spatial statistics on large datasets
 :::
 
-
 ## Analysing lattice data: neighbours, weights, models
 
 ```{r}
@@ -44,6 +43,7 @@ tm_shape(pol_pres15) + tm_fill("types")
 ```
 
 We need to make the geometries valid first,
+
 ```{r}
 st_is_valid(pol_pres15) |> all()
 pol_pres15 <- st_make_valid(pol_pres15)
@@ -51,6 +51,7 @@ st_is_valid(pol_pres15) |> all()
 ```
 
 First, we will consider polygons in relationship to their direct neighbours
+
 ```{r}
 library(spdep)
 pol_pres15 |> poly2nb(queen = TRUE) -> nb_q
@@ -81,8 +82,7 @@ Alternative approaches to form neighbourhood matrices:
 
 ### Weights matrices
 
-Weight matrices are needed in analysis, they determine how observations
-(or residuals) are weighted in a regression model.
+Weight matrices are needed in analysis, they determine how observations (or residuals) are weighted in a regression model.
 
 ```{r}
 (nb_q |> nb2listw(style = "B") -> lw_q_B)
@@ -94,8 +94,7 @@ Moran's I is defined as
 
 $$
 I = \frac{n \sum_{(2)} w_{ij} z_i z_j}{S_0 \sum_{i=1}^{n} z_i^2}
-$$
-where $x_i, i=1, \ldots, n$ are $n$ observations on the numeric variable of interest, $z_i = x_i - \bar{x}$, $\bar{x} = \sum_{i=1}^{n} x_i / n$, $\sum_{(2)} = \stackrel{\sum_{i=1}^{n} \sum_{j=1}^{n}}{i \neq j}$, $w_{ij}$ are the spatial weights, and $S_0 = \sum_{(2)} w_{ij}$. 
+$$ where $x_i, i=1, \ldots, n$ are $n$ observations on the numeric variable of interest, $z_i = x_i - \bar{x}$, $\bar{x} = \sum_{i=1}^{n} x_i / n$, $\sum_{(2)} = \stackrel{\sum_{i=1}^{n} \sum_{j=1}^{n}}{i \neq j}$, $w_{ij}$ are the spatial weights, and $S_0 = \sum_{(2)} w_{ij}$.
 
 We can compute it as
 
@@ -189,7 +188,7 @@ Discuss:
 Object storage abstracts away hard drives and file systems!
 
 -   e.g. S3 bucket (AWS/OpenStack):
-    -   total size is _unlimited_
+    -   total size is *unlimited*
     -   maximum object size 5 Tb (AWS S3)
     -   idea: write once, read many times
     -   large objects: write piece-wise

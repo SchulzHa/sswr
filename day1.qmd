@@ -1,4 +1,4 @@
-# Introduction to spatial data
+# `build` - `render book`Introduction to spatial data
 
 ### Learning goals
 
@@ -82,7 +82,9 @@ From [Spatial Data Science: with applications in R](https://r-spatial.org/book/)
 library(rnaturalearth)
 library(sf)
 par(mar = c(2,2,0,0) + .1)
-ne_countries() |> st_geometry() |> plot(axes=TRUE)
+st_crs <- '+proj=eck4'# added by exercise
+#st_crs(st_crs) # added by exercise
+ne_countries() |> st_transform(st_crs) |> st_geometry() |> plot(axes=TRUE, graticule = TRUE) # |> st_transform(st_crs) and graticule = TRUE added by exercise
 ```
 
 ::: {.callout-tip title="What is Statistics"}
